@@ -1,7 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_application_1/home.dart';
-
+import 'package:flutter_application_1/home.dart'; //another form of import other than like the below one
 import 'login.dart';
 
 class Authentication extends StatefulWidget {
@@ -18,13 +17,13 @@ class _AuthenticationState extends State<Authentication> {
         body: StreamBuilder<User?>(
       stream: FirebaseAuth.instance
           .authStateChanges(), // notify user about changes to the sign-in state
-      builder: ((context, snapshot) { // snapshot is a collection of metadata
+      builder: ((context, snapshot) {
+        // snapshot is a collection of metadata
         if (snapshot.hasData) {
-          return const Home();
+          return const Home(); // return to homepage if have data existed
+          // return const MyLoginPage(title: 'My Login Page');
         } else {
-          return const MyLoginPage(
-            title: 'My Login Page'
-          );
+          return const MyLoginPage(title: 'My Login Page');
         }
       }),
     ));

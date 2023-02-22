@@ -1,6 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
+
 class MyLoginPage extends StatefulWidget {
   const MyLoginPage({Key? key, required this.title}) : super(key: key);
 
@@ -86,3 +87,4 @@ class _MyLoginPageState extends State<MyLoginPage> {
     );
   }
 }
+
