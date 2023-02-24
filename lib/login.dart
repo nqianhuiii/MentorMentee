@@ -1,7 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
-
 class MyLoginPage extends StatefulWidget {
   const MyLoginPage({Key? key, required this.title}) : super(key: key);
 
@@ -30,18 +29,19 @@ class _MyLoginPageState extends State<MyLoginPage> {
           email: _emailController.text.trim(),
           password: _passwordController.text.trim());
     } on FirebaseAuthException catch (e) {
+      // ignore: avoid_print
       print(e.toString());
       const alert = AlertDialog(
         title: Text("Error sign in"),
         content: Text("Wrong username or password"),
       );
       return showDialog(
-        // use context because:
-        // 1. navigator
-        // 2. retrieve theme data
-        // 3. call overlay widget 
-        context: context, 
-        builder: (context)=>alert);
+          // use context because:
+          // 1. navigator
+          // 2. retrieve theme data
+          // 3. call overlay widget
+          context: context,
+          builder: (context) => alert);
     }
   }
 
@@ -63,28 +63,93 @@ class _MyLoginPageState extends State<MyLoginPage> {
             decoration: BoxDecoration(
                 border: Border.all(color: Colors.black),
                 borderRadius: BorderRadius.circular(5.0)),
-            child:
-                Column(mainAxisAlignment: MainAxisAlignment.center, children: [
-              const Text('Email: '),
-              TextField(
-                decoration:
-                    const InputDecoration(prefixIcon: Icon(Icons.person)),
-                controller: _emailController,
-              ),
-              const SizedBox(height: 12),
-              const Text('Password: '),
-              TextField(
-                  obscureText: true,
-                  controller: _passwordController,
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                const Text('Email: '),
+                TextField(
                   decoration:
-                      const InputDecoration(prefixIcon: Icon(Icons.security))),
-              const SizedBox(height: 12),
-              ElevatedButton(onPressed: login, child: const Text('Login')),
-            ]),
+                      const InputDecoration(prefixIcon: Icon(Icons.person)),
+                  controller: _emailController,
+                ),
+
+                const SizedBox(height: 12),
+
+                const Text('Password: '),
+                TextField(
+                    obscureText: true,
+                    controller: _passwordController,
+                    decoration: const InputDecoration(
+                        prefixIcon: Icon(Icons.security))),
+
+                const SizedBox(height: 15),
+
+                ElevatedButton(onPressed: login, child: const Text('Login')),
+
+                const SizedBox(height: 15),
+
+                // or continue with (sign in option)
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 25.0),
+                  child: Row(
+                    // ignore: prefer_const_literals_to_create_immutables
+                    children: [
+                      // ignore: prefer_const_constructors
+                      Expanded(
+                        child: const Divider(
+                          thickness: 0.5,
+                          color: Colors.grey,
+                        ),
+                      ),
+
+                      // ignore: prefer_const_constructors
+                      Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 10.0),
+                        child: const Text('Or continue with',
+                            style: TextStyle(color: Colors.grey)),
+                      ),
+
+                      const Expanded(
+                        child: Divider(
+                          thickness: 0.5,
+                          color: Colors.grey,
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+
+                const SizedBox(height: 25),
+
+                // google sign in
+                Row(
+                  children: [
+
+                    //google button
+                    Container(
+                      padding: const EdgeInsets.all(20),
+                      decoration: BoxDecoration(
+                        border: Border.all(color: Colors.grey),
+                        borderRadius: BorderRadius.circular(16),
+                        color: Colors.white,
+                      ),
+
+                        child: Image.asset(
+                        "lib/images/google.png",
+                        height: 40,
+                        ),
+                      
+                    ),
+                      
+
+
+                  ],
+                )
+              ],
+            ),
           ),
         ],
       ),
     );
   }
 }
-

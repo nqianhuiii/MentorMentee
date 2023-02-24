@@ -9,7 +9,7 @@ class Home extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        drawer: NavDrawer(),
+        drawer: const NavDrawer(),
         appBar: AppBar(
           title: const Text("My Home Page"),
         ),

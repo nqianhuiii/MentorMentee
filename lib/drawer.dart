@@ -19,7 +19,7 @@ class NavDrawer extends StatelessWidget {
           ListTile(
             title: const Text('Sign Out'),
             onTap: () {
-              // update the state of the app
+              // update the state of the app - sign out
               FirebaseAuth.instance.signOut();
               // then close the drawer
               Navigator.pop(context);
