@@ -13,7 +13,7 @@ Future <void> main() async {
   await Hive.initFlutter();
 
   // open a hive box
-  await Hive.openBox("expense_database");   // name of database
+  await Hive.openBox("expense_database2");   // name of database
 
   runApp(const MyApp());
 }

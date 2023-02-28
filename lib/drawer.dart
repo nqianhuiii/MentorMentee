@@ -12,7 +12,7 @@ class NavDrawer extends StatelessWidget {
         children: [
           const DrawerHeader(
             decoration: BoxDecoration(
-              color: Colors.blue,
+              color: Colors.black,
             ),
             child: Text('Drawer Header'),
           ),

@@ -48,7 +48,8 @@ class _Home extends State<Home> {
                 Expanded(
                   child: TextField(
                     controller: newExpenseRinggitController,
-                    keyboardType: TextInputType.number, // limit input to numbers only (number keypad)
+                    keyboardType: TextInputType
+                        .number, // limit input to numbers only (number keypad)
                     decoration: const InputDecoration(hintText: "Ringgit"),
                   ),
                 ),
@@ -77,21 +78,33 @@ class _Home extends State<Home> {
     );
   }
 
+  // delete expense
+  void deleteExpense(ExpenseItem expense) {
+    Provider.of<ExpenseData>(context, listen: false).deleteExpense(expense);
+  }
+
   // save
   void save() {
-    // put ringgits and cents together into amount
-    String amoount =
-        '${newExpenseRinggitController.text}.${newExpenseCentsController.text}';
-    // create expense item
-    ExpenseItem newExpense = ExpenseItem(
-      name: newExpenseNameController.text,
-      amount: amoount,
-      dateTime: DateTime.now(),
-    );
+    // only save the expenses if all text fields are filled
+    if(newExpenseNameController.text.isNotEmpty && 
+      newExpenseRinggitController.text.isNotEmpty && 
+      newExpenseCentsController.text.isNotEmpty)
+      {
+        // put ringgits and cents together into amount
+        String amoount =
+            '${newExpenseRinggitController.text}.${newExpenseCentsController.text}';
+       
+        // create expense item
+        ExpenseItem newExpense = ExpenseItem(
+          name: newExpenseNameController.text,
+          amount: amoount,
+          dateTime: DateTime.now(),
+        );
 
-    // add the new expense
-    Provider.of<ExpenseData>(context, listen: false).addNewExpense(newExpense);
+      // add the new expense
+      Provider.of<ExpenseData>(context, listen: false).addNewExpense(newExpense);
 
+      }
     Navigator.pop(context);
     clear();
   }
@@ -136,6 +149,8 @@ class _Home extends State<Home> {
                   name: value.getAllExpensesList()[index].name,
                   amount: value.getAllExpensesList()[index].amount,
                   dateTime: value.getAllExpensesList()[index].dateTime,
+                  deleteTapped: (p0) => 
+                    deleteExpense(value.getAllExpensesList()[index]),
                 ),
               ),
             ],

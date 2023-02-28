@@ -3,7 +3,7 @@ import '../models/expense_item.dart';
 
 class HiveDataBase {
   // reference our box openned
-  final _myBox = Hive.box("expense_database");
+  final _myBox = Hive.box("expense_database2");
 
   // write data
   void saveData(List<ExpenseItem> allExpense) {
