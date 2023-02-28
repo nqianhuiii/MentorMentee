@@ -1,7 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/home.dart'; //another form of import other than like the below one
-import 'package:google_sign_in/google_sign_in.dart';
 import 'login.dart';
 
 class Authentication extends StatefulWidget {
@@ -30,4 +29,3 @@ class _AuthenticationState extends State<Authentication> {
     ));
   }
 }
-
